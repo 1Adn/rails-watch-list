@@ -1,7 +1,10 @@
 <h1>All the lists :</h1>
 <ul>
-<% @lists.each do |list| %>
-<li><%= link_to list.name, list_path(list) %></li>
-<% end %>
+  <% @lists.each do |list| %>
+    <li><%= link_to list.name, list_path(list) %></li>
+    <% if list.photo.attached? %>
+      <li><%= cl_image_tag list.photo.key, height: 300, width: 400, crop: :fill %></li>
+    <% end %>
+  <% end %>
 </ul>
 <div> <%= link_to "Add a list", new_list_path %></div>
